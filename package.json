@@ -83,7 +83,7 @@
   "devDependencies": {
     "@size-limit/preset-app": "^2.1.6",
     "@size-limit/webpack": "^2.1.6",
-    "@storybook/addon-actions": "^5.1.10",
+    "@storybook/addon-actions": "^5.3.21",
     "@storybook/addon-info": "^5.3.21",
     "@storybook/addon-links": "^5.2.3",
     "@storybook/addon-storysource": "^5.3.18",
