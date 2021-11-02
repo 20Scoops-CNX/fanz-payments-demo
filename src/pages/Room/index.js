@@ -72,13 +72,12 @@ const Room = () => {
       method: 'post',
       headers: {
         Accept: 'application/json',
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        Authorization:
+          '0653d9f4cdff4de5edbb6b22cd2d5f3b:6b0436eca2e69575d638f13d216c61579849ecb114f41ff836497f58e2eea069'
       },
       body: JSON.stringify({
         // Please note this key is for demo only *recomended use in server side
-        pbkey: '0653d9f4cdff4de5edbb6b22cd2d5f3b',
-        pvkey:
-          '6b0436eca2e69575d638f13d216c61579849ecb114f41ff836497f58e2eea069',
         amount: room.price,
         name: 'Markus Müller',
         email: 'fanzmerchant1@gmail.com',
