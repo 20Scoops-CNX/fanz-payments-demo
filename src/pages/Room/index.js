@@ -152,7 +152,7 @@ const Room = () => {
           </TotalPrice>
           <WrapperCheckout>
             {loading && <Loading />}
-            {error && <ErrorMessage>{error}</ErrorMessage>}
+            {error ? <ErrorMessage>{error}</ErrorMessage> : null}
             <CheckoutButton onClick={handleCheckout} imageUrl={buttonImage} />
           </WrapperCheckout>
         </PriceDetail>
