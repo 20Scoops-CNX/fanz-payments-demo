@@ -33,29 +33,17 @@ import { rooms } from 'mocks';
 
 const Room = () => {
   const [error, setError] = useState('');
-  const [data, setData] = useState({});
+  const [buttonImage, setButtonImage] = useState();
   const [loading, setLoading] = useState(false);
   const { id } = useParams();
-
   const room = find(rooms, { id });
 
   const fetchConfig = () => {
     setLoading(true);
-    fetch('https://staging-api-pay.fanz.io/v1/payments/config', {
-      method: 'get',
-      headers: {
-        Authorization:
-          '0653d9f4cdff4de5edbb6b22cd2d5f3b:6b0436eca2e69575d638f13d216c61579849ecb114f41ff836497f58e2eea069'
-      }
-    })
-      .then(function(response) {
-        if (!response.ok) {
-          throw response;
-        }
-        return response.json();
-      })
-      .then(function(data) {
-        setData({ ...data.data });
+    const clientId = 'cus-MTYyNzY0ODkzMTE0NGszdXlt';
+    fetch(`https://staging-api-pay.fanz.io/v1/payments/${clientId}/button`)
+      .then(response => {
+        setButtonImage(response.url);
         setLoading(false);
       })
       .catch(err => {
@@ -168,10 +156,7 @@ const Room = () => {
             {loading ? <Loading /> : null}
             <ErrorMessage>{error ? error : null}</ErrorMessage>
             <PayloCheckout onClick={handleCheckout}>
-              <img
-                src={data.cashback_button_image || checkoutButton}
-                alt="checkout button"
-              />
+              <img src={buttonImage || checkoutButton} alt="checkout button" />
             </PayloCheckout>
           </WrapperCheckout>
         </PriceDetail>
