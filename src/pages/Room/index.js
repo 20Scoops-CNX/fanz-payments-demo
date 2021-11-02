@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { find } from 'lodash';
+import { clientId, secretKey } from 'constants/merchant';
 import {
   Wrapper,
   Title,
@@ -18,7 +19,6 @@ import {
   Email,
   TotalPrice,
   WrapperCheckout,
-  PayloCheckout,
   PersonalTitle,
   HotelCurrency,
   SoftColor,
@@ -26,36 +26,23 @@ import {
 } from './index.view';
 
 import imageProfile from 'assets/ImageProfile.png';
-import checkoutButton from 'assets/ButtonLoading.svg';
 import { ReactComponent as User } from 'assets/User.svg';
 import Loading from 'components/Loading';
 import { rooms } from 'mocks';
+import CheckoutButton from 'components/CheckoutButton';
 
 const Room = () => {
   const [error, setError] = useState('');
-  const [data, setData] = useState({});
+  const [buttonImage, setButtonImage] = useState();
   const [loading, setLoading] = useState(false);
   const { id } = useParams();
-
   const room = find(rooms, { id });
 
   const fetchConfig = () => {
     setLoading(true);
-    fetch('https://staging-api-pay.fanz.io/v1/payments/config', {
-      method: 'get',
-      headers: {
-        Authorization:
-          '0653d9f4cdff4de5edbb6b22cd2d5f3b:6b0436eca2e69575d638f13d216c61579849ecb114f41ff836497f58e2eea069'
-      }
-    })
-      .then(function(response) {
-        if (!response.ok) {
-          throw response;
-        }
-        return response.json();
-      })
-      .then(function(data) {
-        setData({ ...data.data });
+    fetch(`https://staging-api-pay.fanz.io/v1/payments/${clientId}/button`)
+      .then(response => {
+        setButtonImage(response.url);
         setLoading(false);
       })
       .catch(err => {
@@ -73,8 +60,7 @@ const Room = () => {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
-        Authorization:
-          '0653d9f4cdff4de5edbb6b22cd2d5f3b:6b0436eca2e69575d638f13d216c61579849ecb114f41ff836497f58e2eea069'
+        Authorization: secretKey
       },
       body: JSON.stringify({
         // Please note this key is for demo only *recomended use in server side
@@ -165,14 +151,9 @@ const Room = () => {
             {room.price.toFixed(2)} EUR
           </TotalPrice>
           <WrapperCheckout>
-            {loading ? <Loading /> : null}
-            <ErrorMessage>{error ? error : null}</ErrorMessage>
-            <PayloCheckout onClick={handleCheckout}>
-              <img
-                src={data.cashback_button_image || checkoutButton}
-                alt="checkout button"
-              />
-            </PayloCheckout>
+            {loading && <Loading />}
+            {error ? <ErrorMessage>{error}</ErrorMessage> : null}
+            <CheckoutButton onClick={handleCheckout} imageUrl={buttonImage} />
           </WrapperCheckout>
         </PriceDetail>
       </Wrapper.BottomContent>

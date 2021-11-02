@@ -176,19 +176,7 @@ const WrapperCheckout = styled.div`
     margin-bottom: 40px;
   `}
 `;
-const PayloCheckout = styled.button`
-  background: transparent;
-  border: 0;
-  cursor: pointer;
-  &:hover {
-    opacity: 0.8;
-  }
-  ${media.lessThan('medium')`
-    > img {
-      width: 100%;
-    }
-  `}
-`;
+
 const PersonalTitle = styled.h5`
   display: flex;
   align-content: center;
@@ -229,7 +217,6 @@ export {
   Email,
   WrapperCheckout,
   TotalPrice,
-  PayloCheckout,
   PersonalTitle,
   HotelCurrency,
   SoftColor,
