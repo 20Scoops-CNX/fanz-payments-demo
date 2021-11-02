@@ -1,11 +1,11 @@
 import React from 'react';
 import { PayloCheckout } from './index.view';
-import checkoutButton from 'assets/ButtonLoading.svg';
+import loadingButtonImage from 'assets/ButtonLoading.svg';
 
 const CheckoutButton = ({ onClick, imageUrl }) => {
   return (
     <PayloCheckout onClick={onClick}>
-      <img src={imageUrl || checkoutButton} alt="checkout button" />
+      <img src={imageUrl || loadingButtonImage} alt="checkout button" />
     </PayloCheckout>
   );
 };
