@@ -19,15 +19,14 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       - name: Install
-        run: yarn
+        run: npm install
 
       - name: QA Review
         run: |
-          yarn test
-          yarn lint:check
-          yarn stylelint:check
-          yarn prettier:check
-          # yarn check-bundle-size
+          npm run test
+          npm run lint:check
+          npm run stylelint:check
+          npm run prettier:check
         env:
           CI: true
 
@@ -59,11 +58,11 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       - name: Install
-        run: yarn
+        run: npm install
 
       - name: Build
         run: |
-          yarn build
+          npm run build
         env:
           CI: true
 
