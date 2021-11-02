@@ -33,25 +33,10 @@ import CheckoutButton from 'components/CheckoutButton';
 
 const Room = () => {
   const [error, setError] = useState('');
-  const [buttonImage, setButtonImage] = useState();
   const [loading, setLoading] = useState(false);
   const { id } = useParams();
   const room = find(rooms, { id });
-
-  const fetchConfig = () => {
-    setLoading(true);
-    fetch(`https://staging-api-pay.fanz.io/v1/payments/${clientId}/button`)
-      .then(response => {
-        setButtonImage(response.url);
-        setLoading(false);
-      })
-      .catch(err => {
-        err.json().then(errorMessage => {
-          setError(errorMessage.message);
-          setLoading(false);
-        });
-      });
-  };
+  const buttonImage = `https://staging-api-pay.fanz.io/v1/payments/${clientId}/button`;
 
   const handleCheckout = () => {
     setLoading(true);
@@ -63,7 +48,6 @@ const Room = () => {
         Authorization: secretKey
       },
       body: JSON.stringify({
-        // Please note this key is for demo only *recomended use in server side
         amount: room.price,
         name: 'Markus Müller',
         email: 'fanzmerchant1@gmail.com',
@@ -88,10 +72,6 @@ const Room = () => {
         });
       });
   };
-
-  useEffect(() => {
-    fetchConfig();
-  }, []);
 
   if (!room) return null;
 
