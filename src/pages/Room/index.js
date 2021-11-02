@@ -26,7 +26,6 @@ import {
 } from './index.view';
 
 import imageProfile from 'assets/ImageProfile.png';
-import checkoutButton from 'assets/ButtonLoading.svg';
 import { ReactComponent as User } from 'assets/User.svg';
 import Loading from 'components/Loading';
 import { rooms } from 'mocks';
@@ -154,10 +153,7 @@ const Room = () => {
           <WrapperCheckout>
             {loading && <Loading />}
             {error && <ErrorMessage>{error}</ErrorMessage>}
-            <CheckoutButton
-              handleClick={handleCheckout}
-              imageUrl={buttonImage || checkoutButton}
-            />
+            <CheckoutButton onClick={handleCheckout} imageUrl={buttonImage} />
           </WrapperCheckout>
         </PriceDetail>
       </Wrapper.BottomContent>
