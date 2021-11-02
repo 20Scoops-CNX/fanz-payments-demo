@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { find } from 'lodash';
+import { clientId, secretKey } from 'constants/merchant';
 import {
   Wrapper,
   Title,
@@ -40,7 +41,6 @@ const Room = () => {
 
   const fetchConfig = () => {
     setLoading(true);
-    const clientId = 'cus-MTYyNzY0ODkzMTE0NGszdXlt';
     fetch(`https://staging-api-pay.fanz.io/v1/payments/${clientId}/button`)
       .then(response => {
         setButtonImage(response.url);
@@ -61,8 +61,7 @@ const Room = () => {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
-        Authorization:
-          '0653d9f4cdff4de5edbb6b22cd2d5f3b:6b0436eca2e69575d638f13d216c61579849ecb114f41ff836497f58e2eea069'
+        Authorization: secretKey
       },
       body: JSON.stringify({
         // Please note this key is for demo only *recomended use in server side
