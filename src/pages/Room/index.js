@@ -19,7 +19,6 @@ import {
   Email,
   TotalPrice,
   WrapperCheckout,
-  PayloCheckout,
   PersonalTitle,
   HotelCurrency,
   SoftColor,
@@ -31,6 +30,7 @@ import checkoutButton from 'assets/ButtonLoading.svg';
 import { ReactComponent as User } from 'assets/User.svg';
 import Loading from 'components/Loading';
 import { rooms } from 'mocks';
+import CheckoutButton from 'components/CheckoutButton';
 
 const Room = () => {
   const [error, setError] = useState('');
@@ -152,11 +152,12 @@ const Room = () => {
             {room.price.toFixed(2)} EUR
           </TotalPrice>
           <WrapperCheckout>
-            {loading ? <Loading /> : null}
-            <ErrorMessage>{error ? error : null}</ErrorMessage>
-            <PayloCheckout onClick={handleCheckout}>
-              <img src={buttonImage || checkoutButton} alt="checkout button" />
-            </PayloCheckout>
+            {loading && <Loading />}
+            {error && <ErrorMessage>error</ErrorMessage>}
+            <CheckoutButton
+              handleClick={handleCheckout}
+              imageUrl={buttonImage || checkoutButton}
+            />
           </WrapperCheckout>
         </PriceDetail>
       </Wrapper.BottomContent>
