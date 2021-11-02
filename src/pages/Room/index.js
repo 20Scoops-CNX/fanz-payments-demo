@@ -90,7 +90,6 @@ const Room = () => {
         if (!response.ok) {
           throw response;
         }
-        console.log(response);
         return response.json();
       })
       .then(function(data) {
