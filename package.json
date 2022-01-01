@@ -109,7 +109,7 @@
     "react-app-rewired": "^2.1.8",
     "retire": "^2.2.3",
     "storybook-react-router": "^1.0.7",
-    "stylelint": "^10.0.1",
+    "stylelint": "^14.2.0",
     "stylelint-config-recommended": "^3.0.0",
     "stylelint-config-styled-components": "^0.1.1",
     "stylelint-custom-processor-loader": "^0.6.0",
