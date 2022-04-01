@@ -15,7 +15,7 @@
     "lodash": "^4.17.21",
     "morgan": "^1.10.0",
     "normalize.css": "^8.0.1",
-    "prop-types": "^15.7.2",
+    "prop-types": "^15.8.1",
     "qs": "^6.8.0",
     "ramda": "^0.27.1",
     "react": "^16.10.2",
