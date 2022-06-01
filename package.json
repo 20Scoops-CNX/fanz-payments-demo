@@ -107,7 +107,7 @@
     "pretty-quick": "^2.0.1",
     "react-app-rewire-styled-components": "^3.0.2",
     "react-app-rewired": "^2.1.8",
-    "retire": "^2.2.3",
+    "retire": "^3.0.7",
     "storybook-react-router": "^1.0.7",
     "stylelint": "^10.0.1",
     "stylelint-config-recommended": "^3.0.0",
