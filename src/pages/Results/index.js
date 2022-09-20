@@ -12,6 +12,8 @@ import {
 } from './index.view';
 import { ReactComponent as HotelLogo } from 'assets/Logo.svg';
 import { rooms } from 'mocks';
+import { IbelsaRoute } from 'utils/index';
+
 const { Logo } = Header;
 
 const useQuery = () => {
@@ -64,7 +66,7 @@ const Results = () => {
           )}
         </div>
 
-        <BackLink to="/">BACK TO HOME</BackLink>
+        <BackLink to={IbelsaRoute ? '/ibelsa' : '/'}>BACK TO HOME</BackLink>
       </Content>
     </div>
   );

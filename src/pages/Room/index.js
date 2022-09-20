@@ -30,6 +30,7 @@ import { ReactComponent as User } from 'assets/User.svg';
 import Loading from 'components/Loading';
 import { rooms } from 'mocks';
 import CheckoutButton from 'components/CheckoutButton';
+import { IbelsaRoute } from 'utils/index';
 
 const Room = () => {
   const [error, setError] = useState('');
@@ -37,6 +38,15 @@ const Room = () => {
   const { id } = useParams();
   const room = find(rooms, { id });
   const buttonImage = `https://staging-api-pay.fanz.io/v1/payments/${clientId}/button`;
+  const success_url = IbelsaRoute()
+    ? `https://demo.fanz.io/ibelsa/${room.id}/success`
+    : `https://demo.fanz.io/${room.id}/success`;
+  const fail_url = IbelsaRoute()
+    ? `https://demo.fanz.io/ibelsa/${room.id}/fail`
+    : `https://demo.fanz.io/${room.id}/fail`;
+  const back_url = IbelsaRoute()
+    ? `https://demo.fanz.io/ibelsa/rooms/${id}`
+    : `https://demo.fanz.io/rooms/${id}`;
 
   const handleCheckout = () => {
     setLoading(true);
@@ -51,9 +61,9 @@ const Room = () => {
         amount: room.price,
         name: 'Markus Müller',
         email: 'fanzmerchant1@gmail.com',
-        success_url: `https://demo.fanz.io/${room.id}/success`,
-        fail_url: `https://demo.fanz.io/${room.id}/fail`,
-        back_url: `https://demo.fanz.io/rooms/${id}`
+        success_url,
+        fail_url,
+        back_url
       })
     })
       .then(function(response) {

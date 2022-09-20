@@ -1,3 +1,11 @@
+import { useLocation } from 'react-router-dom';
+
+const IbelsaRoute = () => {
+  const location = useLocation();
+  const isIbelsa = location.pathname.includes('ibelsa');
+  return isIbelsa;
+};
+
 const convertHex = (hex, opacity = 1) => {
   const newHex = hex.replace('#', '');
   const rgb = {
@@ -8,4 +16,4 @@ const convertHex = (hex, opacity = 1) => {
   return `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${opacity})`;
 };
 
-export { convertHex };
+export { convertHex, IbelsaRoute };
