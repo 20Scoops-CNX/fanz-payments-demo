@@ -14,6 +14,7 @@ import {
   CalendarIcon,
   SoftColor
 } from './index.view';
+import { IbelsaRoute } from 'utils/index';
 
 const Rooms = () => {
   return (
@@ -54,7 +55,15 @@ const Rooms = () => {
                   </span>
                 </DescriptionTotal>
               </Card.Description>
-              <Button href={`/rooms/${room.id}`}>Choose Room</Button>
+              <Button
+                href={
+                  IbelsaRoute()
+                    ? `/ibelsa/rooms/${room.id}`
+                    : `/rooms/${room.id}`
+                }
+              >
+                Choose Room
+              </Button>
             </Card.Content>
           </Card>
         ))}

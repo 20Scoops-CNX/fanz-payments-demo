@@ -9,8 +9,10 @@ import {
   Description
 } from './index.view';
 import { ReactComponent as HotelLogo } from 'assets/Logo.svg';
+import { IbelsaRoute } from 'utils/index';
 
 const { Logo, BookButton } = Header;
+
 const Home = () => {
   return (
     <div>
@@ -18,7 +20,9 @@ const Home = () => {
         <Logo>
           <HotelLogo />
         </Logo>
-        <BookButton href="/rooms">Book now</BookButton>
+        <BookButton href={IbelsaRoute() ? '/ibelsa/rooms' : '/rooms'}>
+          Book now
+        </BookButton>
       </Header>
       <Content>
         <TextLeft>
